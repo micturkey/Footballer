@@ -1,9 +1,9 @@
 //
-//  TeamRankCellController.swift
+//  TeamRankCell.swift
 //  Footballer
 //
-//  Created by Ethan Zhai on 2016/10/14.
-//  Copyright © 2016年 Ethan Zhai. All rights reserved.
+//  Created by Ethan Zhai on 2017/10/14.
+//  Copyright © 2017年 Ethan Zhai. All rights reserved.
 //
 
 import UIKit
