@@ -54,7 +54,9 @@ class TeamRankTab: UIView {
         self.sessionSimpleDownload(){(success, url) in
             if success {
                 DispatchQueue.main.async{ self.collectionView.reloadData() }
-                
+            }else{
+                let alertView = UIAlertView(title: "网络错误", message: "请检查网络连接", delegate: self, cancelButtonTitle: "确定")
+                alertView.show()
             }
         }
         collectionView.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
@@ -77,7 +79,11 @@ class TeamRankTab: UIView {
             if success {
                 DispatchQueue.main.async{ self.collectionView.reloadData() }
                 
+            }else{
+                let alertView = UIAlertView(title: "网络错误", message: "请检查网络连接", delegate: self, cancelButtonTitle: "确定")
+                alertView.show()
             }
+            
         }
         //结束刷新
         self.collectionView!.mj_header.endRefreshing()
@@ -94,6 +100,10 @@ class TeamRankTab: UIView {
             //输出下载文件原来的存放目录
             //            print("location:\(location)")
             //location位置转换
+            if location == nil {
+                completion(false, "error")
+//                downloadTask.resume()
+            }else{
             let locationPath = location!.path
             let caches:String = NSHomeDirectory() + "/Library/Caches/" + self.league! + ".json"
             //创建文件管理器
@@ -102,6 +112,7 @@ class TeamRankTab: UIView {
             try! fileManager.moveItem(atPath: locationPath, toPath: caches)
             print("new location:\(caches)")
             completion(true, caches)
+            }
         })
         
         //使用resume方法启动任务
